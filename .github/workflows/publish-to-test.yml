@@ -1,0 +1,47 @@
+name: Publish to test environment
+
+on:
+  push:
+    branches: [ test ]
+#  pull_request:
+#    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.300
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Publish
+      run: dotnet publish --configuration Release --no-restore -o ./publish
+#    - name: Test
+#      run: dotnet test --no-restore --verbosity normal
+#    - name: Update the published assets for this environment
+#      run: | 
+#        cd publish/wwwroot
+#        mv -v index.gh-pages.html index.html
+#        for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.wasm/g'`"; done
+#        sed -i 's/\.dll"/.wasm"/g' _framework/blazor.boot.json
+    - name: Install SSH Client 🔑
+      uses: webfactory/ssh-agent@v0.2.0
+      with:
+        ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY_KEY_TEST }}
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        SSH: true
+        GIT_CONFIG_EMAIL: ghidello@users.noreply.github.com
+        COMMIT_MESSAGE: Publish the test site
+        CLEAN: true
+        REPOSITORY_NAME: ghidello/test.teamops.online
+        BRANCH: master # The branch the action should deploy to.
+        FOLDER: publish/wwwroot # The folder the action should deploy.
