@@ -1,0 +1,8 @@
+.vs/
+bin/
+obj/
+node_modules/
+
+src/TeamOps.Ui.Wasm/wwwroot/index.html
+src/TeamOps.Ui.Wasm/wwwroot/teamops*.js*
+src/TeamOps.Ui.Wasm/wwwroot/teamops*.css*
