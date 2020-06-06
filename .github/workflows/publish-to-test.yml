@@ -17,12 +17,17 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.300
+    - name: Build the client assets
+      run: | 
+        cd src/TeamOps.Ui.Wasm/Build
+        npm install
+        npm run build-github
     - name: Install dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Publish
-      run: dotnet publish --configuration Release --no-restore -o ./publish
+      run: dotnet publish --configuration Release --no-restore -o ./publish/TeamOps.Ui.Wasm
 #    - name: Test
 #      run: dotnet test --no-restore --verbosity normal
 #    - name: Update the published assets for this environment
@@ -42,6 +47,6 @@ jobs:
         GIT_CONFIG_EMAIL: ghidello@users.noreply.github.com
         COMMIT_MESSAGE: Publish the test site
         CLEAN: true
-        REPOSITORY_NAME: ghidello/test.teamops.online
-        BRANCH: master # The branch the action should deploy to.
-        FOLDER: publish/wwwroot # The folder the action should deploy.
+        REPOSITORY_NAME: sotsera/test.teamops.online
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: publish/TeamOps.Ui.Wasm/wwwroot # The folder the action should deploy.
