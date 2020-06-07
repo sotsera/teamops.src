@@ -15,4 +15,7 @@ npm install --save-dev html-webpack-inline-source-plugin
 
 --> https://github.com/jantimon/html-webpack-plugin
 
+npm i -D html-beautify-webpack-plugin
+npm i -D ghidello/html-beautify-webpack-plugin
+
 npm i --save-dev node-sass-magic-importer

@@ -8,8 +8,8 @@ on:
 
 env:
   solutionFile: TeamOps.Ui.Wasm.sln
-  projectFolder: src/TeamOps.Ui.Wasm/
-  publishFolder: publish/TeamOps.Ui.Wasm/
+  projectFolder: src/TeamOps.Ui.Wasm
+  publishFolder: publish/TeamOps.Ui.Wasm
 
 jobs:
   build:
@@ -24,9 +24,11 @@ jobs:
         dotnet-version: 3.1.300
     - name: Build the client assets
       run: | 
-        cd ${{env.projectFolder}}Build
+        cd ${{env.projectFolder}}/Build
         npm install
         npm run build-github
+        cd ../wwwroot
+        echo "* binary" > .gitattributes
     - name: Install dependencies
       run: dotnet restore
     - name: Build
@@ -54,4 +56,9 @@ jobs:
         CLEAN: true
         REPOSITORY_NAME: sotsera/test.teamops.online
         BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: ${{env.publishFolder}}wwwroot # The folder the action should deploy.
+        FOLDER: ${{env.publishFolder}}/wwwroot # The folder the action should deploy.
+    - name: Purge cache
+      uses: jakejarvis/cloudflare-purge-action@master
+      env:
+        CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_PURGE_CACHE }}

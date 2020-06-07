@@ -1,6 +1,7 @@
 ﻿const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const SriPlugin = require("webpack-subresource-integrity");
 const magicImporter = require("node-sass-magic-importer");
@@ -8,6 +9,7 @@ const magicImporter = require("node-sass-magic-importer");
 module.exports = (env) => {
 
     var isDevelopment = env === "development";
+    var isForGithubPages = env === "github";
     var mode = isDevelopment ? env : "production";
 
     printBanner(env, mode);
@@ -38,17 +40,37 @@ module.exports = (env) => {
         },
         output: {
             path: path.resolve(__dirname, "../wwwroot"),
-            filename: isDevelopment ? "[name].js" : "[name]-[contenthash:8].js",
+            filename: isDevelopment ? "[name].js" : "[name]-[contenthash:8].min.js",
             crossOriginLoading: "anonymous"
         },
         plugins: [
             new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ["index.html", "teamops*.{js,css}*", "spinner*.{js,css}*"] }),
             new MiniCssExtractPlugin({
-                filename: isDevelopment ? "[name].css" : "[name]-[contenthash:8].css",
-                chunkFilename: isDevelopment ? "[id].css" : "[id]-[contenthash:8].css"
+                filename: isDevelopment ? "[name].css" : "[name]-[contenthash:8].min.css",
+                chunkFilename: isDevelopment ? "[id].css" : "[id]-[contenthash:8].min.css"
             }),
-            new SriPlugin({ hashFuncNames: ["sha256", "sha384"], enabled: true }),
-            new HtmlWebpackPlugin({ minify: false, inject: false, template: "../Layout/index.html" })
+            new SriPlugin({ hashFuncNames: ["sha384"], enabled: true }),
+            new HtmlWebpackPlugin({
+                inject: false,
+                template: "../Layout/index.html",
+                minify: {
+                    minifyJS: true,
+                    minifyCSS: true
+                },
+                isForGithubPages: isForGithubPages
+            }),
+            new HtmlBeautifyPlugin({
+                config: {
+                    html: {
+                        end_with_newline: true,
+                        indent_size: 2,
+                        indent_with_tabs: false,
+                        indent_inner_html: true,
+                        preserve_newlines: false,
+                        unformatted: ["p", "i", "b", "span"]
+                    }
+                }
+            })
         ]
     }
 
