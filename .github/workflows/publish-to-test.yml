@@ -6,6 +6,11 @@ on:
 #  pull_request:
 #    branches: [ master ]
 
+env:
+  solutionFile: TeamOps.Ui.Wasm.sln
+  projectFolder: src/TeamOps.Ui.Wasm/
+  publishFolder: publish/TeamOps.Ui.Wasm/
+
 jobs:
   build:
 
@@ -19,15 +24,15 @@ jobs:
         dotnet-version: 3.1.300
     - name: Build the client assets
       run: | 
-        cd src/TeamOps.Ui.Wasm/Build
+        cd ${{env.projectFolder}}Build
         npm install
         npm run build-github
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ${{env.solutionFile}} -c Release --no-restore
     - name: Publish
-      run: dotnet publish --configuration Release --no-restore -o ./publish/TeamOps.Ui.Wasm
+      run: dotnet publish ${{env.solutionFile}} -c Release --no-build --no-restore -o ${{env.publishFolder}}
 #    - name: Test
 #      run: dotnet test --no-restore --verbosity normal
 #    - name: Update the published assets for this environment
@@ -49,4 +54,4 @@ jobs:
         CLEAN: true
         REPOSITORY_NAME: sotsera/test.teamops.online
         BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: publish/TeamOps.Ui.Wasm/wwwroot # The folder the action should deploy.
+        FOLDER: ${{env.publishFolder}}wwwroot # The folder the action should deploy.

@@ -1,6 +1,7 @@
 .vs/
 bin/
 obj/
+publish/
 node_modules/
 
 src/TeamOps.Ui.Wasm/wwwroot/index.html
