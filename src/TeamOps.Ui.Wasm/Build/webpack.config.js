@@ -47,7 +47,7 @@ module.exports = (env) => {
                 filename: isDevelopment ? "[name].css" : "[name]-[contenthash:8].css",
                 chunkFilename: isDevelopment ? "[id].css" : "[id]-[contenthash:8].css"
             }),
-            new SriPlugin({ hashFuncNames: ["sha384"], enabled: true }),
+            new SriPlugin({ hashFuncNames: ["sha256", "sha384"], enabled: true }),
             new HtmlWebpackPlugin({ minify: false, inject: false, template: "../Layout/index.html" })
         ]
     }
