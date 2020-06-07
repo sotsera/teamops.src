@@ -12,7 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution", "_solution", "{
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		global.json = global.json
-		.github\workflows\publish-to-test.yml = .github\workflows\publish-to-test.yml
 		Readme.md = Readme.md
 		Thanks.txt = Thanks.txt
 	EndProjectSection
