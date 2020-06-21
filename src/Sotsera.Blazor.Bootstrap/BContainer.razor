@@ -1,0 +1,22 @@
+﻿<div class="@ContainerClass">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public BContainerVariant Variant { get; set; } = BContainerVariant.Default;
+    [Parameter] public string ClassName { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    private string ContainerClass => new CssBuilder(FormattedVariant).Add(ClassName);
+
+    private string FormattedVariant => ".container" + Variant switch
+    {
+        BContainerVariant.Sm => "-sm",
+        BContainerVariant.Md => "-md",
+        BContainerVariant.Lg => "-lg",
+        BContainerVariant.Xl => "-xl",
+        BContainerVariant.Xxl => "-xxl",
+        BContainerVariant.Fluid => "-fluid",
+        _ => string.Empty
+    };
+}

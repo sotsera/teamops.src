@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\publish-to-test.yml = .github\workflows\publish-to-test.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sotsera.Blazor.Bootstrap", "src\Sotsera.Blazor.Bootstrap\Sotsera.Blazor.Bootstrap.csproj", "{E902F8BE-535B-4494-B66E-FAB5C0E02E1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2E9500F0-EDD8-4C57-9CDA-C8B59FD94A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E9500F0-EDD8-4C57-9CDA-C8B59FD94A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E9500F0-EDD8-4C57-9CDA-C8B59FD94A77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E902F8BE-535B-4494-B66E-FAB5C0E02E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E902F8BE-535B-4494-B66E-FAB5C0E02E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E902F8BE-535B-4494-B66E-FAB5C0E02E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E902F8BE-535B-4494-B66E-FAB5C0E02E1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{2E9500F0-EDD8-4C57-9CDA-C8B59FD94A77} = {3371F6C6-E425-4237-8FD2-D58E6B6ADACC}
 		{FD3B546F-B7B3-40FB-B8C8-D3164F781EDE} = {EC104863-D91D-4695-8160-0A037E1A4C10}
 		{BE1535C6-E546-4C43-A3C1-24B48A9F2EB5} = {FD3B546F-B7B3-40FB-B8C8-D3164F781EDE}
+		{E902F8BE-535B-4494-B66E-FAB5C0E02E1A} = {3371F6C6-E425-4237-8FD2-D58E6B6ADACC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1383130F-4636-40CB-A08C-275FCF58C638}
