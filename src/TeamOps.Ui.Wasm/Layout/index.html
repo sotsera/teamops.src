@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <base href="/" />
+    <base href="/">
     <title>TeamOps</title>
 
     <% if (htmlWebpackPlugin.options.isForGithubPages) { %>
@@ -137,6 +137,8 @@
     <% for (var index in htmlWebpackPlugin.files.js) { %>
     <script src="<%= htmlWebpackPlugin.files.js[index] %>" integrity="<%= htmlWebpackPlugin.files.jsIntegrity[index] %>" crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script>
     <% } %>
+
+    <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
 
     <% if (!htmlWebpackPlugin.options.isForGithubPages) { %>
     <script src="_framework/blazor.webassembly.js" integrity="sha384-FH1VAIHGb98Imobp+o5lw6x4SAWqJAipIlsD10oPj+wWaNXUzHDNSCApzqab240q" crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script>
