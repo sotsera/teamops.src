@@ -6,7 +6,8 @@
   "scripts": {
     "build-dev": "webpack --env development",
     "build-prod": "webpack --env production",
-    "build-github": "webpack --env github"
+    "build-github": "webpack --env github",
+    "watch": "webpack --env development --watch"
   },
   "author": "",
   "license": "MIT",

@@ -44,12 +44,15 @@ module.exports = (env) => {
             crossOriginLoading: "anonymous"
         },
         plugins: [
-            new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ["index.html", "teamops*.{js,css}*", "spinner*.{js,css}*"] }),
+            new CleanWebpackPlugin({
+                cleanStaleWebpackAssets: false,
+                cleanOnceBeforeBuildPatterns: ["index.html", "teamops*.{js,css}*"]
+            }),
             new MiniCssExtractPlugin({
                 filename: isDevelopment ? "[name].css" : "[name]-[contenthash:8].min.css",
                 chunkFilename: isDevelopment ? "[id].css" : "[id]-[contenthash:8].min.css"
             }),
-            new SriPlugin({ hashFuncNames: ["sha384"], enabled: true }),
+            new SriPlugin({ hashFuncNames: ["sha384"], enabled: !isDevelopment }),
             new HtmlWebpackPlugin({
                 inject: false,
                 template: "../Layout/index.html",
@@ -57,6 +60,7 @@ module.exports = (env) => {
                     minifyJS: true,
                     minifyCSS: true
                 },
+                isDevelopment: isDevelopment,
                 isForGithubPages: isForGithubPages
             }),
             new HtmlBeautifyPlugin({
@@ -72,6 +76,12 @@ module.exports = (env) => {
                 }
             })
         ]
+    }
+
+    if (isDevelopment) {
+        config.watchOptions = {
+            ignored: ["../**/*.{razor,cs}", "../wwwroot/**", "node_modules/**"]
+        };
     }
 
     return config;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <base href="/">
+    <base href="/" />
     <title>TeamOps</title>
 
     <% if (htmlWebpackPlugin.options.isForGithubPages) { %>
@@ -119,8 +119,13 @@
     </style>
 
     <link href="libraries/bootstrap/v5.0.0-alpha1/bootstrap.min.css" rel="stylesheet" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
+
     <% for (var index in htmlWebpackPlugin.files.css) { %>
+    <% if (htmlWebpackPlugin.options.isDevelopment) {%>
+    <link href="<%= htmlWebpackPlugin.files.css[index] %>" rel="stylesheet">
+    <% } else { %>
     <link href="<%= htmlWebpackPlugin.files.css[index] %>" integrity="<%= htmlWebpackPlugin.files.cssIntegrity[index] %>" crossorigin="<%= webpackConfig.output.crossOriginLoading %>" rel="stylesheet" />
+    <% } %>
     <% } %>
 </head>
 <body>
@@ -135,7 +140,11 @@
     </div>
 
     <% for (var index in htmlWebpackPlugin.files.js) { %>
-    <script src="<%= htmlWebpackPlugin.files.js[index] %>" integrity="<%= htmlWebpackPlugin.files.jsIntegrity[index] %>" crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script>
+    <% if (htmlWebpackPlugin.options.isDevelopment) {%>
+    <link href="<%= htmlWebpackPlugin.files.js[index] %>" rel="stylesheet">
+    <% } else { %>
+    <link href="<%= htmlWebpackPlugin.files.js[index] %>" integrity="<%= htmlWebpackPlugin.files.jsIntegrity[index] %>" crossorigin="<%= webpackConfig.output.crossOriginLoading %>" rel="stylesheet" />
+    <% } %>
     <% } %>
 
     <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>

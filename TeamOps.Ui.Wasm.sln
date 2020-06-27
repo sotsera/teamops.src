@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution", "_solution", "{
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		build.cmd = build.cmd
 		global.json = global.json
 		Readme.md = Readme.md
 		Thanks.txt = Thanks.txt
