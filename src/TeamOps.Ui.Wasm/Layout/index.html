@@ -141,19 +141,19 @@
 
     <% for (var index in htmlWebpackPlugin.files.js) { %>
     <% if (htmlWebpackPlugin.options.isDevelopment) {%>
-    <link href="<%= htmlWebpackPlugin.files.js[index] %>" rel="stylesheet">
+    <script src="<%= htmlWebpackPlugin.files.js[index] %>"></script>
     <% } else { %>
-    <link href="<%= htmlWebpackPlugin.files.js[index] %>" integrity="<%= htmlWebpackPlugin.files.jsIntegrity[index] %>" crossorigin="<%= webpackConfig.output.crossOriginLoading %>" rel="stylesheet" />
+    <script src="<%= htmlWebpackPlugin.files.js[index] %>" integrity="<%= htmlWebpackPlugin.files.jsIntegrity[index] %>" crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script>
     <% } %>
     <% } %>
 
     <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
 
     <% if (!htmlWebpackPlugin.options.isForGithubPages) { %>
-    <script src="_framework/blazor.webassembly.js" integrity="sha384-FH1VAIHGb98Imobp+o5lw6x4SAWqJAipIlsD10oPj+wWaNXUzHDNSCApzqab240q" crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script>
+    <script src="_framework/blazor.webassembly.js" integrity="sha256-71nPmAR09Rean3frHn6pubgbFQ7CH5X6v7uVQTGtiUc= sha384-iGDse4KOteDe6huVlDCK5AheuXmdafkH7fF35Qd7GN/hKkV7YG3iT9hGeu/T33bP sha512-4E9deGfjOd/8rCVqn7t/iDWHj1LRbqMpfC8tvS9Ezx/gvfAqG1Xpl7LPFPT5wgF6vByYGyJ2L1PqFIzU4uQmUQ==" crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script>
     <% } else { %>
     <script src="libraries/brotli/decode-M8FQ1Iwe.min.js" integrity="sha384-HvFyVS2+TGWnZKb2+c/tb4kW7hTilYwmiRVd8mE9XgmDMo5/vEi6MTN/4VoXWWz2" crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script>
-    <script src="_framework/blazor.webassembly.js" autostart="false" integrity="sha384-FH1VAIHGb98Imobp+o5lw6x4SAWqJAipIlsD10oPj+wWaNXUzHDNSCApzqab240q" crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="false" integrity="sha256-71nPmAR09Rean3frHn6pubgbFQ7CH5X6v7uVQTGtiUc= sha384-iGDse4KOteDe6huVlDCK5AheuXmdafkH7fF35Qd7GN/hKkV7YG3iT9hGeu/T33bP sha512-4E9deGfjOd/8rCVqn7t/iDWHj1LRbqMpfC8tvS9Ezx/gvfAqG1Xpl7LPFPT5wgF6vByYGyJ2L1PqFIzU4uQmUQ==" crossorigin="<%= webpackConfig.output.crossOriginLoading %>"></script>
     <script>
         Blazor.start({
             loadBootResource: function (type, name, defaultUri, integrity) {
